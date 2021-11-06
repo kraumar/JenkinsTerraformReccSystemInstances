@@ -3,6 +3,7 @@ pipeline {
 
     parameters {
         string(name: 'BRANCH', defaultValue: params.BRANCH ?: 'master', description: 'branch to use')
+        string(name: 'AWS CREDENTIALS', defaultValue: params.BRANCH ?: 'credentials', description: 'aws credentials to use')
         booleanParam(name: 'CLEANUP', defaultValue: false, description: 'do you want to perform cleanup')
     }
 
@@ -33,7 +34,8 @@ pipeline {
                 withCredentials([[
                     $class: 'AmazonWebServicesCredentialsBinding'
                     accessKeyVariable: 'AWS_ACCESS_KEY_ID'
-                    secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]){
+                    secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
+                    credentialsId: params.CREDENTIALS]]){
 
                     sh ''' #!/bin/bash
                         set -e -o pipefail
