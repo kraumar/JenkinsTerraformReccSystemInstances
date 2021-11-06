@@ -24,6 +24,7 @@ pipeline {
             steps {
                 git branch: "${params.BRANCH}",
                 url: "https://github.com/kraumar/JenkinsTerraformReccSystemInstances.git"
+                print params.CREDENTIALS
             }
         }
 
