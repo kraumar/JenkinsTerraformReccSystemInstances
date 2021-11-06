@@ -32,9 +32,9 @@ pipeline {
             ansiColor('xterm') {
 
                 withCredentials([[
-                    $class: 'AmazonWebServicesCredentialsBinding'
-                    accessKeyVariable: 'AWS_ACCESS_KEY_ID'
-                    secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
+                    $class: 'AmazonWebServicesCredentialsBinding',
+                    accessKeyVariable: 'AWS_ACCESS_KEY_ID',
+                    secretKeyVariable: 'AWS_SECRET_ACCESS_KEY',
                     credentialsId: params.CREDENTIALS]]){
 
                     sh ''' #!/bin/bash
