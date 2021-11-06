@@ -3,7 +3,7 @@ pipeline {
 
     parameters {
         string(name: 'BRANCH', defaultValue: params.BRANCH ?: 'master', description: 'branch to use')
-        string(name: 'AWS CREDENTIALS', defaultValue: params.CREDENTIALS ?: 'credentials', description: 'aws credentials to use')
+        string(name: 'CREDENTIALS', defaultValue: params.CREDENTIALS ?: 'credentials', description: 'aws credentials to use')
         booleanParam(name: 'CLEANUP', defaultValue: false, description: 'do you want to perform cleanup')
     }
 
