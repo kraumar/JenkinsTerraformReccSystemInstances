@@ -38,7 +38,6 @@ pipeline {
                         credentialsId: params.CREDENTIALS]]){
 
                         sh ''' #!/bin/bash
-                            set -e -o pipefail
                             terraform init -updgrade=true -input=false -reconfigure'''
                     }
                 }
