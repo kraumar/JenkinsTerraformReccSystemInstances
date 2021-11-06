@@ -33,13 +33,14 @@ pipeline {
 
                     withCredentials([[
                         $class: 'AmazonWebServicesCredentialsBinding',
+                        credentialsId: params.CREDENTIALS
                         accessKeyVariable: 'AWS_ACCESS_KEY_ID',
-                        secretKeyVariable: 'AWS_SECRET_ACCESS_KEY',
-                        credentialsId: params.CREDENTIALS]]){
+                        secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
+                        ]]){
 
                         sh ''' #!/bin/bash
                             set -o pipefail
-                            terraform init -updgrade=true -input=false -reconfigure'''
+                            terraform init'''
                     }
                 }
             }   
