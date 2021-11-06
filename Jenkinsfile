@@ -28,20 +28,21 @@ pipeline {
         }
 
         stage ('Terraform Init') {
+            steps{
+                ansiColor('xterm') {
 
-            ansiColor('xterm') {
+                    withCredentials([[
+                        $class: 'AmazonWebServicesCredentialsBinding',
+                        accessKeyVariable: 'AWS_ACCESS_KEY_ID',
+                        secretKeyVariable: 'AWS_SECRET_ACCESS_KEY',
+                        credentialsId: params.CREDENTIALS]]){
 
-                withCredentials([[
-                    $class: 'AmazonWebServicesCredentialsBinding',
-                    accessKeyVariable: 'AWS_ACCESS_KEY_ID',
-                    secretKeyVariable: 'AWS_SECRET_ACCESS_KEY',
-                    credentialsId: params.CREDENTIALS]]){
-
-                    sh ''' #!/bin/bash
-                        set -e -o pipefail
-                        terraform init -updgrade=true -input=false -reconfigure'''
+                        sh ''' #!/bin/bash
+                            set -e -o pipefail
+                            terraform init -updgrade=true -input=false -reconfigure'''
+                    }
                 }
-            }
+            }   
         }
    }
 }
