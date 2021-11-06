@@ -40,7 +40,41 @@ pipeline {
 
                         sh ''' #!/bin/bash
                             set -o pipefail
-                            terraform init'''
+                            terraform init -upgrade=true -input=false -reconfigure'''
+                    }
+                }
+            }   
+        }
+
+        stage ('Terraform Plan'){
+            steps{
+                ansiColor('xterm') {
+
+                    withCredentials([[
+                        $class: 'AmazonWebServicesCredentialsBinding',
+                        credentialsId: params.CREDENTIALS,
+                        accessKeyVariable: 'AWS_ACCESS_KEY_ID',
+                        secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
+                        ]]){
+
+                        sh ''' #!/bin/bash
+                            # 0 - no change
+                            # 1 - errors
+                            # 2 - changes
+                            terraform plan -input=false -detailed-exitcode -out=terraform_plan.out > terraform-output.log
+
+                            CODE=${?}
+                            if [ ${CODE} = "0" ]
+                                then
+                                cat terraform-output.log
+                                exit 0
+                            elif [ ${CODE} = "2"]
+                                then
+                                cat terraform-output.log
+                                exit 0
+                            fi
+
+                            exit ${CODE}'''
                     }
                 }
             }   
