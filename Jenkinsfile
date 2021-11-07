@@ -64,6 +64,7 @@ pipeline {
                             terraform plan -input=false -detailed-exitcode -out=terraform_plan.out > terraform-output.log
 
                             CODE=${?}
+                            echo ${CODE}
                             if [ ${CODE} = "0" ]
                                 then
                                 cat terraform-output.log
