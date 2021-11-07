@@ -40,7 +40,7 @@ pipeline {
                         ]]){
 
                         sh ''' #!/bin/bash
-                            set -e -o pipefail
+                            set -e pipefail
                             terraform init -upgrade=true -input=false -reconfigure'''
                     }
                 }
