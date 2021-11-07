@@ -63,8 +63,6 @@ pipeline {
                             # 2 - changes
                             terraform plan -input=false -detailed-exitcode -out=terraform_plan.out > terraform-output.log
 
-                            CODE=${?}
-                            echo ${CODE}
                             if [ ${CODE} = "0" ]
                                 then
                                 cat terraform-output.log
@@ -72,6 +70,7 @@ pipeline {
                             elif [ ${CODE} = "2"]
                                 then
                                 cat terraform-output.log
+                                grep --color=never "Plan:" terraform-output.log | sed \'s/^[^ ]* //\' > message.log
                                 exit 0
                             fi
 
