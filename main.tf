@@ -19,7 +19,7 @@ resource "aws_security_group_rule" "allow_ssh_access" {
 	from_port = 22
 	to_port = 22
 	protocol = "TCP"
-	cidr_blocks = [ "89.64.44.23/32"]
+	cidr_blocks = [ "89.64.44.22/32"]
 } 
 
 resource "aws_security_group" "ssh_pc" {
