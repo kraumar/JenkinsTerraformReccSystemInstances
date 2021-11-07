@@ -39,7 +39,6 @@ pipeline {
                         ]]){
 
                         sh ''' #!/bin/bash
-                            set -e pipefail
                             terraform init -upgrade=true -input=false -reconfigure'''
                     }
                 }
@@ -58,23 +57,7 @@ pipeline {
                         ]]){
 
                         sh ''' #!/bin/bash
-                            # 0 - no change
-                            # 1 - errors
-                            # 2 - changes
-                            terraform plan -input=false -detailed-exitcode -out=terraform_plan.out > terraform-output.log
-
-                            if [ ${CODE} = "0" ]
-                                then
-                                cat terraform-output.log
-                                exit 0
-                            elif [ ${CODE} = "2"]
-                                then
-                                cat terraform-output.log
-                                grep --color=never "Plan:" terraform-output.log | sed \'s/^[^ ]* //\' > message.log
-                                exit 0
-                            fi
-
-                            exit ${CODE}'''
+                            terraform plan'''
                     }
                 }
             }   
