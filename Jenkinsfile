@@ -24,7 +24,6 @@ pipeline {
             steps {
                 git branch: "${params.BRANCH}",
                 url: "https://github.com/kraumar/JenkinsTerraformReccSystemInstances.git"
-                print params.CREDENTIALS
             }
         }
 
@@ -80,5 +79,46 @@ pipeline {
                 }
             }   
         }
+
+        stage ('Approve Terraform changes'){
+            when {
+                expression {
+                    params.BRANCH == 'master' && fileExists('message.log')
+                }
+            }
+            steps{
+                script{
+                    timeout(time: 5, unit: 'MINUTES'){
+                        input(message: "Validate and approve your changes:", ok: 'Apply')
+                    }
+                }
+            }
+        }
+
+        stage ('Apply Terraform changes'){
+            when {
+                expression {
+                    params.BRANCH == 'master' && fileExists('message.log')
+                }
+            }
+            steps{
+                ansiColor('xterm'){
+                     withCredentials([[
+                        $class: 'AmazonWebServicesCredentialsBinding',
+                        credentialsId: params.CREDENTIALS,
+                        accessKeyVariable: 'AWS_ACCESS_KEY_ID',
+                        secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
+                        ]]){
+                        sh ''' #!/bin/bash
+                            # 0 - no change
+                            # 1 - errors
+                            # 2- changes
+                            terraform apply -input=false terraform_plan.out'''
+                     }
+                }
+            }
+        }
+
+
    }
 }
