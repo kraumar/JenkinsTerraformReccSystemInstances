@@ -57,7 +57,7 @@ pipeline {
                         ]]){
 
                         sh ''' #!/bin/bash
-                            terraform plan'''
+                            terraform plan -out=terraform_plan.out'''
                     }
                 }
             }   
@@ -66,7 +66,7 @@ pipeline {
         stage ('Approve Terraform changes'){
             when {
                 expression {
-                    params.BRANCH == 'master' && fileExists('message.log')
+                    params.BRANCH == 'master' && fileExists('terraform_plan.out')
                 }
             }
             steps{
@@ -81,7 +81,7 @@ pipeline {
         stage ('Apply Terraform changes'){
             when {
                 expression {
-                    params.BRANCH == 'master' && fileExists('message.log')
+                    params.BRANCH == 'master' && fileExists('terraform_plan.out')
                 }
             }
             steps{
