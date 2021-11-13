@@ -106,7 +106,7 @@ resource "aws_ebs_volume" "ebs-eu-central-1a" {
 
 resource "aws_volume_attachment" "ebs-eu-central-1a-attachment" {
 	count = "${var.ec2-1a-instance_count}"
-	device_name = "/dev/sdb"
+	device_name = "/dev/sdg"
 	volume_id = element(aws_ebs_volume.ebs-eu-central-1a.*.id, count.index)
 	instance_id = element(aws_instance.slave-node-1a.*.id, count.index)
 }
@@ -126,7 +126,7 @@ resource "aws_ebs_volume" "ebs-eu-central-1b" {
 
 resource "aws_volume_attachment" "ebs-eu-central-1b-attachment" {
         count = "${var.ec2-1b-instance_count}"
-        device_name = "/dev/sdb"
+        device_name = "/dev/sdg"
         volume_id = element(aws_ebs_volume.ebs-eu-central-1b.*.id, count.index)
         instance_id = element(aws_instance.slave-node-1b.*.id, count.index)
 }
@@ -146,7 +146,7 @@ resource "aws_ebs_volume" "ebs-eu-central-1c" {
 
 resource "aws_volume_attachment" "ebs-eu-central-1c-attachment" {
         count = "${var.ec2-1c-instance_count}"
-        device_name = "/dev/sdb"
+        device_name = "/dev/sdg"
         volume_id = element(aws_ebs_volume.ebs-eu-central-1c.*.id, count.index)
         instance_id = element(aws_instance.slave-node-1c.*.id, count.index)
 }
