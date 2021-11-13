@@ -98,3 +98,43 @@ resource "aws_volume_attachment" "ebs-eu-central-1a-attachment" {
 	volume_id = element(aws_ebs_volume.ebs-eu-central-1a.*.id, count.index)
 	instance_id = element(aws_instance.slave-node-1a.*.id, count.index)
 }
+
+resource "aws_ebs_volume" "ebs-eu-central-1b" {
+        count = "${var.ec2-1b-instance_count}"
+        availability_zone = "eu-central-1b"
+        size = 16
+        type = "gp2"
+        lifecycle {
+                prevent_destroy = true
+        }
+        tags = {
+                Name = "ebs-eu-central-1b-${count.index + 1}"
+        }
+}
+
+resource "aws_volume_attachment" "ebs-eu-central-1b-attachment" {
+        count = "${var.ec2-1b-instance_count}"
+        device_name = "/dev/sdb"
+        volume_id = element(aws_ebs_volume.ebs-eu-central-1b.*.id, count.index)
+        instance_id = element(aws_instance.slave-node-1b.*.id, count.index)
+}
+
+resource "aws_ebs_volume" "ebs-eu-central-1c" {
+        count = "${var.ec2-1c-instance_count}"
+        availability_zone = "eu-central-1c"
+        size = 16
+        type = "gp2"
+        lifecycle {
+                prevent_destroy = true
+        }
+        tags = {
+                Name = "ebs-eu-central-1c-${count.index + 1}"
+        }
+}
+
+resource "aws_volume_attachment" "ebs-eu-central-1c-attachment" {
+        count = "${var.ec2-1c-instance_count}"
+        device_name = "/dev/sdb"
+        volume_id = element(aws_ebs_volume.ebs-eu-central-1c.*.id, count.index)
+        instance_id = element(aws_instance.slave-node-1c.*.id, count.index)
+}
