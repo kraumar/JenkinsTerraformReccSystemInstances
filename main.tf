@@ -92,7 +92,7 @@ resource "aws_ebs_volume" "ebs-eu-central-1a" {
 	}
 }
 
-resource "aws_volume_attachement" "ebs-eu-central-1a-attachement" {
+resource "aws_volume_attachment" "ebs-eu-central-1a-attachement" {
 	count = "${var.ec2-1a-instance_count}"
 	device_name = "/dev/sda1"
 	volume_id = "{aws_ebs_volume.ebs_volume.*.id[count.index]}"
