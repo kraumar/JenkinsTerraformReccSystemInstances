@@ -40,6 +40,10 @@ resource "aws_instance" "slave-node-1a" {
 	key_name = aws_key_pair.key-to-pc.key_name	
 	associate_public_ip_address = true
 	vpc_security_group_ids = [aws_security_group.ssh_pc.id]
+	
+	root_block_device {
+		volume_size = 50
+	}
 
 	tags = {
 		Name = "slave-node-1a-${count.index + 1}"
@@ -57,6 +61,10 @@ resource "aws_instance" "slave-node-1b" {
         associate_public_ip_address = true
         vpc_security_group_ids = [aws_security_group.ssh_pc.id]
 
+        root_block_device {
+                volume_size = 50
+        }
+
         tags = {
                 Name = "slave-node-1b-${count.index + 1}"
 
@@ -72,6 +80,10 @@ resource "aws_instance" "slave-node-1c" {
         key_name = aws_key_pair.key-to-pc.key_name
         associate_public_ip_address = true
         vpc_security_group_ids = [aws_security_group.ssh_pc.id]
+
+        root_block_device {
+                volume_size = 50
+        }
 
         tags = {
                 Name = "slave-node-1c-${count.index + 1}"
