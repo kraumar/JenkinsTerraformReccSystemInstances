@@ -7,6 +7,21 @@ variable "vpc_cidr" {
 	default = "0.0.0.0/32"
 }
 
+variable ec2-1a-instance_count{
+	type = number
+	default = 2
+}
+
+variable ec2-1b-instance_count{
+        type = number
+        default = 1
+}
+
+variable ec2-1c-instance_count{
+        type = number
+        default = 1
+}
+
 variable "subnets"{
 	type = map(string)
 	default = {

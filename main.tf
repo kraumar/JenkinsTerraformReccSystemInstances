@@ -31,21 +31,8 @@ resource "aws_security_group" "ssh_pc" {
 	}
 }
 
-resource "aws_instance" "master-node" {
-	ami = var.instance_ami
-	instance_type = var.instance_type["master-instance_type"]
-	subnet_id = var.subnets["eu-central-1a"]
-	availability_zone = "eu-central-1a"
-	key_name = aws_key_pair.key-to-pc.key_name
-	associate_public_ip_address = true
-	vpc_security_group_ids = [aws_security_group.ssh_pc.id]
-	tags = {
-		Name = "master-node-1a"
-	}
-}
-
 resource "aws_instance" "slave-node-1a" {
-	count = 1
+	count = "${var.ec2-1a-instance_count}"
 	ami = var.instance_ami
 	instance_type = var.instance_type["slaves-instance_type"]
 	subnet_id = var.subnets["eu-central-1a"]
@@ -61,7 +48,7 @@ resource "aws_instance" "slave-node-1a" {
 }
 
 resource "aws_instance" "slave-node-1b" {
-        count = 1
+        count = "${var.ec2-1b-instance_count}"
         ami = var.instance_ami
         instance_type = var.instance_type["slaves-instance_type"]
         subnet_id = var.subnets["eu-central-1b"]
@@ -77,7 +64,7 @@ resource "aws_instance" "slave-node-1b" {
 }
 
 resource "aws_instance" "slave-node-1c" {
-        count = 1
+        count = "${var.ec2-1c-instance_count}" 
         ami = var.instance_ami
         instance_type = var.instance_type["slaves-instance_type"]
         subnet_id = var.subnets["eu-central-1c"]
@@ -90,4 +77,24 @@ resource "aws_instance" "slave-node-1c" {
                 Name = "slave-node-1c-${count.index + 1}"
 
         }
+}
+
+resource "aws_ebs_volume" "ebs-eu-central-1a" {
+	count = "${var.ec2-1a-instance_count}"
+	availability_zone = "eu-central-1a"
+	size = 16
+	type = "gp2"
+	lifecycle {
+		prevent_destroy = true
+	}
+	tags = {
+		Name = "ebs-eu-central-1a-${count.index + 1}"
+	}
+}
+
+resource "aws_volume_attachement" "ebs-eu-central-1a-attachement" {
+	count = "${var.ec2-1a-instance_count}"
+	device_name = "/dev/sda1"
+	volume_id = "{aws_ebs_volume.ebs_volume.*.id[count.index]}"
+	instance_id = "${aws_instance.ec2.*.id[count.index]}"
 }
