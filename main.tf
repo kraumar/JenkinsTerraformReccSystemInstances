@@ -94,7 +94,7 @@ resource "aws_ebs_volume" "ebs-eu-central-1a" {
 
 resource "aws_volume_attachment" "ebs-eu-central-1a-attachment" {
 	count = "${var.ec2-1a-instance_count}"
-	device_name = "/dev/sda1"
+	device_name = "/dev/sdb"
 	volume_id = element(aws_ebs_volume.ebs-eu-central-1a.*.id, count.index)
 	instance_id = element(aws_instance.slave-node-1a.*.id, count.index)
 }
