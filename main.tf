@@ -31,6 +31,36 @@ resource "aws_security_group" "ssh_pc" {
 	}
 }
 
+resource "aws_security_group_rule" "ubuntu_archives" {
+	security_group_id = aws_security_group.cloud_init.id
+	type = "egress"
+	description = "outbound rule for ubuntu archive files"
+	from_port = 80
+	to_port = 80
+	protocol = "TCP"
+	cidr_blocks = [0.0.0.0/0]
+}
+
+resource "aws_security_group_rule" "https_resources" {
+        security_group_id = aws_security_group.cloud_init.id
+        type = "egress"
+        description = "outbound rule for https resources from internet (wget)"
+        from_port = 443
+        to_port = 443
+        protocol = "HTTPS"
+        cidr_blocks = [0.0.0.0/0]
+}
+
+resource "aws_security_group" "cloud_init"{
+        name = "cloud_init"
+        description = "security groups for cloud init commands"
+        vpc_id = var.vpc_id
+        tags = {
+                Name = "cloud_init"
+        }
+
+}
+
 resource "aws_instance" "slave-node-1a" {
 	count = "${var.ec2-1a-instance_count}"
 	ami = var.instance_ami
