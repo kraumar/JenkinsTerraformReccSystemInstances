@@ -84,7 +84,7 @@ resource "aws_security_group_rule" "hadoop_9000_egress"{
 resource "aws_security_group" "apache" {
 	name = "apache"
 	description = "security group for apache frameworks"
-	vps_id = var.vpc_id
+	vpc_id = var.vpc_id
 	tags = {
 		Name = "apache"
 	}
