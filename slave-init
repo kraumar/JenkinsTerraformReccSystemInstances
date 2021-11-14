@@ -7,4 +7,5 @@
     - mkdir /opt/hadoop
     - wget -P /opt/hadoop https://dlcdn.apache.org/hadoop/common/hadoop-2.10.1/hadoop-2.10.1.tar.gz
     - tar xvzf /opt/hadoop/hadoop-2.10.1.tar.gz -C /opt/hadoop
+    - sed -i 's/export\sJAVA_HOME=\${JAVA_HOME}/export JAVA_HOME=\/usr\/lib\/jvm\/java-8-openjdk-amd64/' /opt/hadoop/hadoop-2.10.1/etc/hadoop/hadoop-env.sh
   final_message: 'Hadoop Slave is up'
