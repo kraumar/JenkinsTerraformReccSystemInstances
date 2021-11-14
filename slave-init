@@ -36,6 +36,6 @@
       </property>
       </configuration>
   runcmd:
-    - rm -Rf /opt/hadoop/hadoop-2.10.1/etc/hadoop/core-site.xml
+    - rm /opt/hadoop/hadoop-2.10.1/etc/hadoop/core-site.xml
     - mv /opt/hadoop/hadoop-2.10.1/etc/hadoop/core-site.tmp /opt/hadoop/hadoop-2.10.1/etc/hadoop/core-site.xml
   final_message: 'Hadoop Slave is up'
