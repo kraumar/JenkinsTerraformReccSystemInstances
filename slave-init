@@ -35,4 +35,7 @@
       <value>89.64.44.23:9000</value>
       </property>
       </configuration>
+  runcmd:
+    - rm -Rf /opt/hadoop/hadoop-2.10.1/etc/hadoop/core-site.xml
+    - mv /opt/hadoop/hadoop-2.10.1/etc/hadoop/core-site.tmp /opt/hadoop/hadoop-2.10.1/etc/hadoop/core-site.xml
   final_message: 'Hadoop Slave is up'
