@@ -38,7 +38,7 @@ resource "aws_security_group_rule" "ubuntu_archives" {
 	from_port = 80
 	to_port = 80
 	protocol = "TCP"
-	cidr_blocks = [0.0.0.0/0]
+	cidr_blocks = ["0.0.0.0/0"]
 }
 
 resource "aws_security_group_rule" "https_resources" {
@@ -48,7 +48,7 @@ resource "aws_security_group_rule" "https_resources" {
         from_port = 443
         to_port = 443
         protocol = "HTTPS"
-        cidr_blocks = [0.0.0.0/0]
+        cidr_blocks = ["0.0.0.0/0"]
 }
 
 resource "aws_security_group" "cloud_init"{
@@ -69,7 +69,7 @@ resource "aws_instance" "slave-node-1a" {
 	availability_zone = "eu-central-1a"
 	key_name = aws_key_pair.key-to-pc.key_name	
 	associate_public_ip_address = true
-	vpc_security_group_ids = [aws_security_group.ssh_pc.id]
+	vpc_security_group_ids = [aws_security_group.ssh_pc.id, aws_security_group.cloud_init.id]
 	
 	root_block_device {
 		volume_size = 50
@@ -89,7 +89,7 @@ resource "aws_instance" "slave-node-1b" {
         availability_zone = "eu-central-1b"
         key_name = aws_key_pair.key-to-pc.key_name
         associate_public_ip_address = true
-        vpc_security_group_ids = [aws_security_group.ssh_pc.id]
+        vpc_security_group_ids = [aws_security_group.ssh_pc.id, aws_security_group.cloud_init.id]
 	
 	user_data = file("slave-init")
 
@@ -111,7 +111,7 @@ resource "aws_instance" "slave-node-1c" {
         availability_zone = "eu-central-1c"
         key_name = aws_key_pair.key-to-pc.key_name
         associate_public_ip_address = true
-        vpc_security_group_ids = [aws_security_group.ssh_pc.id]
+        vpc_security_group_ids = [aws_security_group.ssh_pc.id, aws_security_group.cloud_init.id]
 
         root_block_device {
                 volume_size = 50
