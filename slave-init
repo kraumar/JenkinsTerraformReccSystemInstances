@@ -13,6 +13,8 @@
     - mv /opt/hadoop/hadoop-2.10.1/etc/hadoop/core-site.tmp /opt/hadoop/hadoop-2.10.1/etc/hadoop/core-site.xml
   write_files:
     - path: /opt/hadoop/hadoop-2.10.1/etc/hadoop/core-site.xml
+      permissions: '0755'
+      append: true
       content: |
         <configuration>
           <property>
@@ -20,5 +22,4 @@
             <value>89.64.44.23:9000</value>
           </property>
         </configuration>
-      append: true
   final_message: 'Hadoop Slave is up'
