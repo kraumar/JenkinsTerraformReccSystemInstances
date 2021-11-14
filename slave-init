@@ -3,6 +3,5 @@
   resize_rootfs_tmp: /dev
   runcmd:
     - apt install openjdk-8-jre-headless
-    - cd ~
-    - mkdir hadoop
+    - mkdir /opt/hadoop
   final_message: 'Hadoop Slave is up'
