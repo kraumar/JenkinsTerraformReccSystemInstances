@@ -1,0 +1,8 @@
+#cloud-config
+  disable_root: false
+  resize_rootfs_tmp: /dev
+  runcmd:
+    - apt-get -y install openjdk-8-jdk-headless
+    - cd ~
+    - mkdir hadoop
+  final_message: 'Hadoop Slave is up'

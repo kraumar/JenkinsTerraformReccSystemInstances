@@ -60,6 +60,8 @@ resource "aws_instance" "slave-node-1b" {
         key_name = aws_key_pair.key-to-pc.key_name
         associate_public_ip_address = true
         vpc_security_group_ids = [aws_security_group.ssh_pc.id]
+	
+	user_data = file("slave-init")
 
         root_block_device {
                 volume_size = 50
