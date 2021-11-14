@@ -2,10 +2,23 @@
   disable_root: false
   resize_rootfs_tmp: /dev
   runcmd:
-    - apt update 
+    - apt update
     - apt install -y openjdk-8-jre-headless
     - mkdir /opt/hadoop
     - wget -P /opt/hadoop https://dlcdn.apache.org/hadoop/common/hadoop-2.10.1/hadoop-2.10.1.tar.gz
     - tar xvzf /opt/hadoop/hadoop-2.10.1.tar.gz -C /opt/hadoop
     - sed -i 's/export\sJAVA_HOME=\${JAVA_HOME}/export JAVA_HOME=\/usr\/lib\/jvm\/java-8-openjdk-amd64/' /opt/hadoop/hadoop-2.10.1/etc/hadoop/hadoop-env.sh
+    - head --lines=-2 /opt/hadoop/hadoop-2.10.1/etc/hadoop/core-site.xml >| /opt/hadoop/hadoop-2.10.1/etc/hadoop/core-site.tmp 
+    - rm -Rf /opt/hadoop/hadoop-2.10.1/etc/hadoop/core-site.xml
+    - mv /opt/hadoop/hadoop-2.10.1/etc/hadoop/core-site.tmp /opt/hadoop/hadoop-2.10.1/etc/hadoop/core-site.xml
+  write_files:
+    - path: /opt/hadoop/hadoop-2.10.1/etc/hadoop/core-site.xml
+      content: |
+        <configuration>
+          <property>
+            <name>fs.defaultFS</name>
+            <value>89.64.44.23:9000</value>
+          </property>
+        </configuration>
+      append: true
   final_message: 'Hadoop Slave is up'

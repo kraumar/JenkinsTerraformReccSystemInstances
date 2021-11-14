@@ -61,6 +61,35 @@ resource "aws_security_group" "cloud_init"{
 
 }
 
+resource "aws_security_group_rule" "hadoop_9000_ingress"{
+	security_group_id = aws_security_group.apache.id
+	type = "ingress"
+	description = "ingress for hadoop master on port 9000"
+	from_port = 9000
+	to_port = 9000
+	protocol = "TCP"
+	cidr_blocks = ["89.64.44.23/32"]
+}
+
+resource "aws_security_group_rule" "hadoop_9000_egress"{
+        security_group_id = aws_security_group.apache.id
+        type = "egress"
+        description = "egress for hadoop master on port 9000"
+        from_port = 9000
+        to_port = 9000
+        protocol = "TCP"
+        cidr_blocks = ["89.64.44.23/32"]
+}
+
+resource "aws_security_group" "apache" {
+	name = "apache"
+	description = "security group for apache frameworks"
+	vps_id = var.vpc_id
+	tags = {
+		Name = "apache"
+	}
+}
+
 resource "aws_instance" "slave-node-1a" {
 	count = "${var.ec2-1a-instance_count}"
 	ami = var.instance_ami
@@ -69,7 +98,11 @@ resource "aws_instance" "slave-node-1a" {
 	availability_zone = "eu-central-1a"
 	key_name = aws_key_pair.key-to-pc.key_name	
 	associate_public_ip_address = true
-	vpc_security_group_ids = [aws_security_group.ssh_pc.id, aws_security_group.cloud_init.id]
+	vpc_security_group_ids = [
+				aws_security_group.ssh_pc.id, 
+				aws_security_group.cloud_init.id,
+				aws_security_group.apache.id
+				]
 	
 	root_block_device {
 		volume_size = 50
@@ -89,7 +122,11 @@ resource "aws_instance" "slave-node-1b" {
         availability_zone = "eu-central-1b"
         key_name = aws_key_pair.key-to-pc.key_name
         associate_public_ip_address = true
-        vpc_security_group_ids = [aws_security_group.ssh_pc.id, aws_security_group.cloud_init.id]
+        vpc_security_group_ids = [
+				aws_security_group.ssh_pc.id, 
+				aws_security_group.cloud_init.id,
+				aws_security_group.apache.id
+				]
 	
 	user_data = file("slave-init")
 
@@ -111,7 +148,11 @@ resource "aws_instance" "slave-node-1c" {
         availability_zone = "eu-central-1c"
         key_name = aws_key_pair.key-to-pc.key_name
         associate_public_ip_address = true
-        vpc_security_group_ids = [aws_security_group.ssh_pc.id, aws_security_group.cloud_init.id]
+        vpc_security_group_ids = [
+				aws_security_group.ssh_pc.id, 
+				aws_security_group.cloud_init.id,
+				aws_security_group.apache.id
+				]
 
         root_block_device {
                 volume_size = 50
