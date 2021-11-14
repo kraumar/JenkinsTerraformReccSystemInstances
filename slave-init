@@ -1,4 +1,4 @@
-#cloud-init
+#cloud-config
   disable_root: false
   resize_rootfs_tmp: /dev
   runcmd:
