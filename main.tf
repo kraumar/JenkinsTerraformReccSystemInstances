@@ -47,7 +47,7 @@ resource "aws_security_group_rule" "https_resources" {
         description = "outbound rule for https resources from internet (wget)"
         from_port = 443
         to_port = 443
-        protocol = "HTTPS"
+        protocol = "TCP"
         cidr_blocks = ["0.0.0.0/0"]
 }
 
