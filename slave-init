@@ -5,36 +5,11 @@
     - apt update
     - apt install -y openjdk-8-jre-headless
     - mkdir /opt/hadoop
+    - mkdir /opt/config_files
     - wget -P /opt/hadoop https://dlcdn.apache.org/hadoop/common/hadoop-2.10.1/hadoop-2.10.1.tar.gz
     - tar xvzf /opt/hadoop/hadoop-2.10.1.tar.gz -C /opt/hadoop
     - sed -i 's/export\sJAVA_HOME=\${JAVA_HOME}/export JAVA_HOME=\/usr\/lib\/jvm\/java-8-openjdk-amd64/' /opt/hadoop/hadoop-2.10.1/etc/hadoop/hadoop-env.sh
-  write_files:
-  - path: /opt/hadoop/hadoop-2.10.1/etc/hadoop/core-site.tmp
-    content: |
-      <?xml version="1.0" encoding="UTF-8"?>
-      <?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
-      <!--
-        Licensed under the Apache License, Version 2.0 (the "License");
-        you may not use this file except in compliance with the License.
-        You may obtain a copy of the License at
-
-          http://www.apache.org/licenses/LICENSE-2.0
-
-        Unless required by applicable law or agreed to in writing, software
-        distributed under the License is distributed on an "AS IS" BASIS,
-        WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-        See the License for the specific language governing permissions and
-        limitations under the License. See accompanying LICENSE file.
-      -->
-
-      <!-- Put site-specific property overrides in this file. -->
-
-      <configuration>
-      <property>
-      <name>fs.defaultFS</name>
-      <value>89.64.44.23:9000</value>
-      </property>
-      </configuration>
-  runcmd:
+    - git clone https://github.com/kraumar/slave-node-spark.git /opt/config_files
     - rm /opt/hadoop/hadoop-2.10.1/etc/hadoop/core-site.xml
+    - cp /opt/config_files/slave-node-spark/core-site.xml /opt/hadoop/hadoop-2.10.1/etc/hadoop/core-site.xml 
   final_message: 'Hadoop Slave is up'
