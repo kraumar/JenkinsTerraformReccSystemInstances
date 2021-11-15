@@ -1,6 +1,11 @@
 #cloud-config
   disable_root: false
   resize_rootfs_tmp: /dev
+  users:
+    - default
+    - name: hadoop
+      ssh_authorized_keys:
+        - !file ~/.ssh/id_rsa.pub
   runcmd:
     - apt update
     - apt install -y openjdk-8-jre-headless
