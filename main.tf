@@ -109,7 +109,7 @@ resource "aws_instance" "slave-node-1a" {
 	}
 
         provisioner "local-exec" {
-                command = "echo ${aws_instance.slave-node-1a.public_ip} >> /home/marek-ubu/Documents/IAC/slave-public-ips.txt"
+                command = "echo ${element(aws_instance.slave-node-1a.*.public_ip, count.index)}  >> /home/marek-ubu/Documents/IAC/slave-public-ips.txt"
         }
 
 	tags = {
@@ -139,7 +139,7 @@ resource "aws_instance" "slave-node-1b" {
         }
 
 	provisioner "local-exec" {
-		command = "echo ${aws_instance.slave-node-1b.public_ip} >> /home/marek-ubu/Documents/IAC/slave-public-ips.txt"
+		command = "echo ${element(aws_instance.slave-node-1b.*.public_ip, count.index)}  >> /home/marek-ubu/Documents/IAC/slave-public-ips.txt"
 	}
 
         tags = {
@@ -167,8 +167,8 @@ resource "aws_instance" "slave-node-1c" {
         }
 
         provisioner "local-exec" {
-                command = "echo ${aws_instance.slave-node-1c.public_ip} >> /home/marek-ubu/Documents/IAC/slave-public-ips.txt"
-        }
+        	command = "echo ${element(aws_instance.slave-node-1c.*.public_ip, count.index)}  >> /home/marek-ubu/Documents/IAC/slave-public-ips.txt"
+	}
 
         tags = {
                 Name = "slave-node-1c-${count.index + 1}"
