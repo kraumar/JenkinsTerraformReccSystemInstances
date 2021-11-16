@@ -1,9 +1,7 @@
 import os
 import shutil
 
-dumb = open("config.tmp")
-
-os.remove("config.tmp")
+os.mknod("./config.tmp")
 
 file = open("/home/marek-ubu/Documents/IAC/slave-public-ips")
 
@@ -14,7 +12,7 @@ for line in file:
 
 n_lines = len(ips)
 
-file = open("config.tmp", "a")
+file = open("./config.tmp", "a")
 
 namenode = """Host nnode
   HostName 89.64.44.23
@@ -31,5 +29,5 @@ for i in range(n_lines):
   IdentityFile ~/.ssh/id_rsa"""
 	file.write('\n' + datanode + '\n')
 
-os.replace("config.tmp","/home/marek-ubu/.ssh/config")
+os.replace("./onfig.tmp","/home/marek-ubu/.ssh/config")
 
