@@ -20,4 +20,5 @@
     - git clone https://github.com/kraumar/slave-node-spark.git /opt/config_files
     - rm /opt/hadoop/hadoop-2.10.1/etc/hadoop/core-site.xml
     - cp /opt/config_files/core-site.xml /opt/hadoop/hadoop-2.10.1/etc/hadoop/core-site.xml
+    - chown -R hadoop: /opt/hadoop
   final_message: 'Hadoop Slave is up'
