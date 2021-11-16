@@ -91,7 +91,7 @@ resource "aws_security_group" "apache" {
 }
 
 resource "null_resource" "slave-node-1a-ips" {
-	count = length(aws.instance.slave-node-1a)
+	count = "${var.ec2-1a-instance_count}"
 
 	provisioner "local-exec" {
 		command = "echo ${aws_instance.slave-node-1a[count.index].public_ip}  >> /home/marek-ubu/Documents/IAC/slave-public-ips.txt"
@@ -100,7 +100,7 @@ resource "null_resource" "slave-node-1a-ips" {
 }
 
 resource "null_resource" "slave-node-1b-ips" {
-	count = length(aws.instance.slave-node-1b)
+	count = "${var.ec2-1b-instance_count}"
 
 	provisioner "local-exec" {
 		command = "echo ${aws_instance.slave-node-1b[count.index].public_ip}  >> /home/marek-ubu/Documents/IAC/slave-public-ips.txt"
@@ -109,7 +109,7 @@ resource "null_resource" "slave-node-1b-ips" {
 }
 
 resource "null_resource" "slave-node-1c-ips" {
-	count = length(aws.instance.slave-node-1c)
+	count = "${var.ec2-1c-instance_count}"
 
 	provisioner "local-exec" {
 		command = "echo ${aws_instance.slave-node-1c[count.index].public_ip}  >> /home/marek-ubu/Documents/IAC/slave-public-ips.txt"
