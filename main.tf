@@ -90,40 +90,6 @@ resource "aws_security_group" "apache" {
 	}
 }
 
-resource "null_resource" "remove_old_pips_file" {
-       
-        provisioner "local-exec" {
-                command = "rm -rf /home/marek-ubu/Documents/IAC/slave-public-ips"
-        }
-
-}
-
-resource "null_resource" "slave-node-1a-ips" {
-	count = "${var.ec2-1a-instance_count}"
-
-	provisioner "local-exec" {
-		command = "echo '${aws_instance.slave-node-1a[count.index].public_ip}'  >> /home/marek-ubu/Documents/IAC/slave-public-ips"
-	}
-
-}
-
-resource "null_resource" "slave-node-1b-ips" {
-	count = "${var.ec2-1b-instance_count}"
-
-	provisioner "local-exec" {
-		command = "echo '${aws_instance.slave-node-1b[count.index].public_ip}'  >> /home/marek-ubu/Documents/IAC/slave-public-ips"
-	}
-
-}
-
-resource "null_resource" "slave-node-1c-ips" {
-	count = "${var.ec2-1c-instance_count}"
-
-	provisioner "local-exec" {
-		command = "echo '${aws_instance.slave-node-1c[count.index].public_ip}'  >> /home/marek-ubu/Documents/IAC/slave-public-ips"
-	}
-
-}
 
 resource "aws_instance" "slave-node-1a" {
 	count = "${var.ec2-1a-instance_count}"
@@ -217,6 +183,9 @@ resource "aws_volume_attachment" "ebs-eu-central-1a-attachment" {
 	device_name = "/dev/sdg"
 	volume_id = element(aws_ebs_volume.ebs-eu-central-1a.*.id, count.index)
 	instance_id = element(aws_instance.slave-node-1a.*.id, count.index)
+	provisioner "local-exec" {
+		command = "echo '${aws_instance.slave-node-1a[count.index].public_ip}'  >> /home/marek-ubu/Documents/IAC/slave-public-ips"
+	}
 }
 
 resource "aws_ebs_volume" "ebs-eu-central-1b" {
@@ -237,6 +206,9 @@ resource "aws_volume_attachment" "ebs-eu-central-1b-attachment" {
 	device_name = "/dev/sdg"
 	volume_id = element(aws_ebs_volume.ebs-eu-central-1b.*.id, count.index)
 	instance_id = element(aws_instance.slave-node-1b.*.id, count.index)
+	provisioner "local-exec" {
+		command = "echo '${aws_instance.slave-node-1b[count.index].public_ip}'  >> /home/marek-ubu/Documents/IAC/slave-public-ips"
+	}
 }
 
 resource "aws_ebs_volume" "ebs-eu-central-1c" {
@@ -257,4 +229,7 @@ resource "aws_volume_attachment" "ebs-eu-central-1c-attachment" {
 	device_name = "/dev/sdg"
 	volume_id = element(aws_ebs_volume.ebs-eu-central-1c.*.id, count.index)
 	instance_id = element(aws_instance.slave-node-1c.*.id, count.index)
+	provisioner "local-exec" {
+		command = "echo '${aws_instance.slave-node-1c[count.index].public_ip}'  >> /home/marek-ubu/Documents/IAC/slave-public-ips"
+	}
 }
