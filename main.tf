@@ -108,6 +108,10 @@ resource "aws_instance" "slave-node-1a" {
 		volume_size = 50
 	}
 
+        provisioner "local-exec" {
+                command = "echo ${aws_instance.web.public_ip} >> /home/marek-ubu/Documents/IAC/slave-public-ips.txt"
+        }
+
 	tags = {
 		Name = "slave-node-1a-${count.index + 1}"
 
@@ -134,6 +138,10 @@ resource "aws_instance" "slave-node-1b" {
                 volume_size = 50
         }
 
+	provisioner "local-exec" {
+		command = "echo ${aws_instance.web.public_ip} >> /home/marek-ubu/Documents/IAC/slave-public-ips.txt"
+	}
+
         tags = {
                 Name = "slave-node-1b-${count.index + 1}"
 
@@ -156,6 +164,10 @@ resource "aws_instance" "slave-node-1c" {
 
         root_block_device {
                 volume_size = 50
+        }
+
+        provisioner "local-exec" {
+                command = "echo ${aws_instance.web.public_ip} >> /home/marek-ubu/Documents/IAC/slave-public-ips.txt"
         }
 
         tags = {
