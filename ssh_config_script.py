@@ -1,9 +1,9 @@
 import os
 import shutil
 
-os.remove("/home/marek-ubu/Documents/IAC/config.tmp")
+os.remove("config.tmp")
 
-file = open("/home/marek-ubu/Documents/IAC/slave-public-ips")
+file = open("slave-public-ips")
 
 ips = []
 
@@ -29,5 +29,5 @@ for i in range(n_lines):
   IdentityFile ~/.ssh/id_rsa"""
 	file.write('\n' + datanode + '\n')
 
-os.replace("/home/marek-ubu/Documents/IAC/config.tmp","/home/marek-ubu/.ssh/config")
+os.replace("config.tmp","/home/marek-ubu/.ssh/config")
 
