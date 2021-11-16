@@ -4,6 +4,9 @@
   users:
     - default
     - name: hadoop
+      groups: sudo
+      shell: /bin/bash
+      sudo: ['ALL=(ALL) NOPASSWD:ALL']
       ssh_authorized_keys:
         - !file ~/.ssh/id_rsa.pub
   runcmd:
@@ -16,5 +19,5 @@
     - sed -i 's/export\sJAVA_HOME=\${JAVA_HOME}/export JAVA_HOME=\/usr\/lib\/jvm\/java-8-openjdk-amd64/' /opt/hadoop/hadoop-2.10.1/etc/hadoop/hadoop-env.sh
     - git clone https://github.com/kraumar/slave-node-spark.git /opt/config_files
     - rm /opt/hadoop/hadoop-2.10.1/etc/hadoop/core-site.xml
-    - cp /opt/config_files/core-site.xml /opt/hadoop/hadoop-2.10.1/etc/hadoop/core-site.xml 
+    - cp /opt/config_files/core-site.xml /opt/hadoop/hadoop-2.10.1/etc/hadoop/core-site.xml
   final_message: 'Hadoop Slave is up'
