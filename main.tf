@@ -90,6 +90,14 @@ resource "aws_security_group" "apache" {
 	}
 }
 
+resource "null_resource" "remove_old_pips_file" {
+       
+        provisioner "local-exec" {
+                command = "rm -rf /home/marek-ubu/Documents/IAC/slave-public-ips"
+        }
+
+}
+
 resource "null_resource" "slave-node-1a-ips" {
 	count = "${var.ec2-1a-instance_count}"
 
