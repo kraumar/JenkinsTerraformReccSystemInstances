@@ -1,9 +1,11 @@
 import os
 import shutil
 
+dumb = open("config.tmp")
+
 os.remove("config.tmp")
 
-file = open("slave-public-ips")
+file = open("/home/marek-ubu/Documents/IAC/slave-public-ips")
 
 ips = []
 
