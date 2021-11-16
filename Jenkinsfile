@@ -103,5 +103,32 @@ pipeline {
         }
 
 
+        stage ('Run Python SSH config script'){
+            when {
+                expression {
+                    params.BRANCH == 'master' && fileExists('terraform_plan.out')
+                }
+            }
+            steps{
+                ansiColor('xterm'){
+                     withCredentials([[
+                        $class: 'AmazonWebServicesCredentialsBinding',
+                        credentialsId: params.CREDENTIALS,
+                        accessKeyVariable: 'AWS_ACCESS_KEY_ID',
+                        secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
+                        ]]){
+                        sh ''' #!/bin/bash
+                            # 0 - no change
+                            # 1 - errors
+                            # 2- changes
+                            python3 ssh_config_script.py'''
+                     }
+                }
+            }
+        }
+
+
+
+
    }
 }
