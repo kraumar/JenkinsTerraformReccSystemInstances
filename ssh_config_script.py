@@ -1,7 +1,7 @@
 import os
-import shutil
 
-os.mknod("./config.tmp")
+if os.path.exists("./config.tmp"):
+	os.remove("./config.tmp")
 
 file = open("/home/marek-ubu/Documents/IAC/slave-public-ips")
 
