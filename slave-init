@@ -8,7 +8,7 @@
       shell: /bin/bash
       sudo: ['ALL=(ALL) NOPASSWD:ALL']
       ssh_authorized_keys:
-        - !file ~/.ssh/id_rsa.pub
+        - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDC5fQwh4xwlf820fkr8hmRe7CNjglCTMSrIv8CKrbpSUJJFjSvb+lGvnwUFgG+gBRB0RMt3N/IyyCphqtDIAHhrXkX5HqXYQZpfXcOqfD4+3nTCs5TniOM4rKBFfbMdFHf7lfXc2bbOyNGw5Th70ooXuq8J9PPhKig2Gn4ClXIZ5fgZC4pe07L/l9rv4J3nYgVgcbB9LG/SXx3wkUoIjupPEhRvfW4+zUuPTJiUV/+cKgBgYewdBQnPTctQpex2rTC4WFww7VM4/6G4oeY1PrSzvykQs214Qc8Nnqky/fGpOYoWSmrGevS3It8FdBxxhBOLd66UOATF6ypp2CjrOscPYy+c0X0D3+bqUc2v/kPnAF+TgqRNCG+M3g+fmnAFheIAz459Fo+ulbOFRCgTpEhDZxthVT5LXl/uajYAYaaED7JS4L2+CEVWQu551UKNxKMt2isA/3yGwZi9ShUkaU1GZj1QuqCyf92Hn8Qax79+3iyY7iGiUoh0Bt/J/dy9FM= marek-ubu@marekubu-XPS-13-9310
   runcmd:
     - apt update
     - apt install -y openjdk-8-jre-headless
