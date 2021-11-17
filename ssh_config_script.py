@@ -30,4 +30,4 @@ for i in range(n_lines):
 	file.write('\n' + datanode + '\n')
 
 os.replace("./config.tmp","/home/marek-ubu/.ssh/config")
-
+os.replace("./slave-public-ips","/home/marek-ubu/HadoopMaster/hadoop-2.10.1/etc/hadoop/slaves")
