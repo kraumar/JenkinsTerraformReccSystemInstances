@@ -29,5 +29,5 @@ for i in range(n_lines):
   IdentityFile ~/.ssh/id_rsa"""
 	file.write('\n' + datanode + '\n')
 
-os.replace("./onfig.tmp","/home/marek-ubu/.ssh/config")
+os.replace("./config.tmp","/home/marek-ubu/.ssh/config")
 
