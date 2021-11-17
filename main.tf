@@ -184,7 +184,7 @@ resource "aws_volume_attachment" "ebs-eu-central-1a-attachment" {
 	volume_id = element(aws_ebs_volume.ebs-eu-central-1a.*.id, count.index)
 	instance_id = element(aws_instance.slave-node-1a.*.id, count.index)
 	provisioner "local-exec" {
-		command = "echo '${aws_instance.slave-node-1a[count.index].public_ip}'  >> /home/marek-ubu/Documents/IAC/slave-public-ips"
+		command = "echo '${aws_instance.slave-node-1a[count.index].public_ip}'  >> slave-public-ips"
 	}
 }
 
@@ -207,7 +207,7 @@ resource "aws_volume_attachment" "ebs-eu-central-1b-attachment" {
 	volume_id = element(aws_ebs_volume.ebs-eu-central-1b.*.id, count.index)
 	instance_id = element(aws_instance.slave-node-1b.*.id, count.index)
 	provisioner "local-exec" {
-		command = "echo '${aws_instance.slave-node-1b[count.index].public_ip}'  >> /home/marek-ubu/Documents/IAC/slave-public-ips"
+		command = "echo '${aws_instance.slave-node-1b[count.index].public_ip}'  >> slave-public-ips"
 	}
 }
 
@@ -230,6 +230,6 @@ resource "aws_volume_attachment" "ebs-eu-central-1c-attachment" {
 	volume_id = element(aws_ebs_volume.ebs-eu-central-1c.*.id, count.index)
 	instance_id = element(aws_instance.slave-node-1c.*.id, count.index)
 	provisioner "local-exec" {
-		command = "echo '${aws_instance.slave-node-1c[count.index].public_ip}'  >> /home/marek-ubu/Documents/IAC/slave-public-ips"
+		command = "echo '${aws_instance.slave-node-1c[count.index].public_ip}'  >> slave-public-ips"
 	}
 }

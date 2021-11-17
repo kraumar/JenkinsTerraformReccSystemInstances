@@ -3,7 +3,7 @@ import os
 if os.path.exists("./config.tmp"):
 	os.remove("./config.tmp")
 
-file = open("/home/marek-ubu/Documents/IAC/slave-public-ips")
+file = open("./slave-public-ips")
 
 ips = []
 
