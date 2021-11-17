@@ -81,6 +81,26 @@ resource "aws_security_group_rule" "hadoop_9000_egress"{
 	cidr_blocks = ["89.64.44.23/32"]
 }
 
+resource "aws_security_group_rule" "hadoop_54311_ingress"{
+	security_group_id = aws_security_group.apache.id
+	type = "ingress"
+	description = "ingress for hadoop master on port 54311"
+	from_port = 54311
+	to_port = 54311
+	protocol = "TCP"
+	cidr_blocks = ["89.64.44.23/32"]
+}
+
+resource "aws_security_group_rule" "hadoop_54311_egress"{
+	security_group_id = aws_security_group.apache.id
+	type = "egress"
+	description = "egress for hadoop master on port 54311"
+	from_port = 54311
+	to_port = 54311
+	protocol = "TCP"
+	cidr_blocks = ["89.64.44.23/32"]
+}
+
 resource "aws_security_group" "apache" {
 	name = "apache"
 	description = "security group for apache frameworks"
