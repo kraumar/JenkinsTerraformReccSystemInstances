@@ -125,6 +125,8 @@ resource "aws_instance" "slave-node-1a" {
 				aws_security_group.apache.id
 				]
 	
+	user_data = file("slave-init")
+
 	root_block_device {
 		volume_size = 50
 	}
@@ -174,6 +176,8 @@ resource "aws_instance" "slave-node-1c" {
 				aws_security_group.cloud_init.id,
 				aws_security_group.apache.id
 				]
+
+	user_data = file("slave-init")
 
 	root_block_device {
 		volume_size = 50
