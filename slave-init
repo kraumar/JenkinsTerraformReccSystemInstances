@@ -18,11 +18,9 @@
     - tar xvzf /opt/hadoop/hadoop-2.10.1.tar.gz -C /opt/hadoop
     - sed -i 's/export\sJAVA_HOME=\${JAVA_HOME}/export JAVA_HOME=\/usr\/lib\/jvm\/java-8-openjdk-amd64/' /opt/hadoop/hadoop-2.10.1/etc/hadoop/hadoop-env.sh
     - git clone https://github.com/kraumar/slave-node-spark.git /opt/config_files
-    - rm /opt/hadoop/hadoop-2.10.1/etc/hadoop/core-site.xml
-    - cp /opt/config_files/core-site.xml /opt/hadoop/hadoop-2.10.1/etc/hadoop/core-site.xml
-    - rm /opt/hadoop/hadoop-2.10.1/etc/hadoop/hdfs-site.xml
-    - cp /opt/config_files/hdfs-site.xml /opt/hadoop/hadoop-2.10.1/etc/hadoop/hdfs-site.xml
+    - mv /opt/config_files/core-site.xml /opt/hadoop/hadoop-2.10.1/etc/hadoop/core-site.xml
+    - mv /opt/config_files/hdfs-site.xml /opt/hadoop/hadoop-2.10.1/etc/hadoop/hdfs-site.xml
     - mkdir -p /usr/local/hadoop/hdfs/data
-    - chown -R 'marek-ubu': /usr/local/hadoop/hdfs/data
-    - chown -R 'marek-ubu': /opt/hadoop
+    - chown -R 'marek-ubu:' /opt
+    - chown -R 'marek-ubu:marek-ubu' /usr/local/hadoop/hdfs/data
   final_message: 'Hadoop Slave is up'
