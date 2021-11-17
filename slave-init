@@ -3,7 +3,7 @@
   resize_rootfs_tmp: /dev
   users:
     - default
-    - name: hadoop
+    - name: marek-ubu
       groups: sudo
       shell: /bin/bash
       sudo: ['ALL=(ALL) NOPASSWD:ALL']
@@ -23,6 +23,6 @@
     - rm /opt/hadoop/hadoop-2.10.1/etc/hadoop/hdfs-site.xml
     - cp /opt/config_files/hdfs-site.xml /opt/hadoop/hadoop-2.10.1/etc/hadoop/hdfs-site.xml
     - mkdir -p /usr/local/hadoop/hdfs/data
-    - chown -R hadoop:hadoop /usr/local/hadoop/hdfs/data
-    - chown -R hadoop: /opt/hadoop
+    - chown -R marek-ubu:marek-ubu /usr/local/hadoop/hdfs/data
+    - chown -R marek-ubu: /opt/hadoop
   final_message: 'Hadoop Slave is up'
