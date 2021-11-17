@@ -121,7 +121,7 @@ pipeline {
                             # 0 - no change
                             # 1 - errors
                             # 2- changes
-                            python3 ssh_config_script.py'''
+                            sudo python3 ssh_config_script.py'''
                      }
                 }
             }
