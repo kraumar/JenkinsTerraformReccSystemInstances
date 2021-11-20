@@ -20,6 +20,16 @@ resource "aws_security_group_rule" "allow_ssh_access" {
 	to_port = 22
 	protocol = "TCP"
 	cidr_blocks = [ "89.64.44.23/32"]
+}
+
+resource "aws_security_group_rule" "allow_ssh_access" {
+        security_group_id = aws_security_group.ssh_pc.id
+        type = "egress"
+        description = "allow ssh access for my local pc on port 22"
+        from_port = 22
+        to_port = 22
+        protocol = "TCP"
+        cidr_blocks = [ "89.64.44.23/32"]
 } 
 
 resource "aws_security_group" "ssh_pc" {
