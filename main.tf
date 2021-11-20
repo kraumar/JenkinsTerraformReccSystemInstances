@@ -12,7 +12,7 @@ resource "aws_key_pair" "key-to-pc"{
 	}
 }
 
-resource "aws_security_group_rule" "allow_ssh_access" {
+resource "aws_security_group_rule" "allow_ssh_access_ingress" {
 	security_group_id = aws_security_group.ssh_pc.id
 	type = "ingress"
 	description = "allow ssh access for my local pc on port 22"
@@ -22,7 +22,7 @@ resource "aws_security_group_rule" "allow_ssh_access" {
 	cidr_blocks = [ "89.64.44.23/32"]
 }
 
-resource "aws_security_group_rule" "allow_ssh_access" {
+resource "aws_security_group_rule" "allow_ssh_access_egress" {
         security_group_id = aws_security_group.ssh_pc.id
         type = "egress"
         description = "allow ssh access for my local pc on port 22"
