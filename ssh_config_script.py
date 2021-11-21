@@ -29,5 +29,5 @@ for i in range(n_lines):
   IdentityFile ~/.ssh/id_rsa"""
 	file.write('\n' + datanode + '\n')
 
-os.replace("./config.tmp","/home/marek-ubu/.ssh/config")
+os.replace("./config.tmp","/home/ubuntu/.ssh/config")
 os.replace("./slave-public-ips","/opt/hadoop/hadoop-2.10.1/etc/hadoop/slaves")
