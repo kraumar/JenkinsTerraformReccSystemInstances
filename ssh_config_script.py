@@ -15,7 +15,7 @@ n_lines = len(ips)
 file = open("./config.tmp", "a")
 
 namenode = """Host nnode
-  HostName 18.193.117.36
+  HostName 18.193.103.99
   User hadoop
   IdentityFile ~/.ssh/id_rsa"""
 
