@@ -78,7 +78,7 @@ resource "aws_security_group_rule" "hadoop_9000_ingress"{
 	from_port = 9000
 	to_port = 9000
 	protocol = "TCP"
-	cidr_blocks = ["89.64.44.23/32"]
+	cidr_blocks = ["18.193.117.36/32"]
 }
 
 resource "aws_security_group_rule" "hadoop_9000_egress"{
@@ -88,7 +88,7 @@ resource "aws_security_group_rule" "hadoop_9000_egress"{
 	from_port = 9000
 	to_port = 9000
 	protocol = "TCP"
-	cidr_blocks = ["89.64.44.23/32"]
+	cidr_blocks = ["18.193.117.36/32"]
 }
 
 resource "aws_security_group_rule" "hadoop_54311_ingress"{
@@ -98,7 +98,7 @@ resource "aws_security_group_rule" "hadoop_54311_ingress"{
 	from_port = 54311
 	to_port = 54311
 	protocol = "TCP"
-	cidr_blocks = ["89.64.44.23/32"]
+	cidr_blocks = ["18.193.117.36/32"]
 }
 
 resource "aws_security_group_rule" "hadoop_54311_egress"{
@@ -108,7 +108,7 @@ resource "aws_security_group_rule" "hadoop_54311_egress"{
 	from_port = 54311
 	to_port = 54311
 	protocol = "TCP"
-	cidr_blocks = ["89.64.44.23/32"]
+	cidr_blocks = ["18.193.117.36/32"]
 }
 
 resource "aws_security_group" "apache" {
@@ -119,7 +119,6 @@ resource "aws_security_group" "apache" {
 		Name = "apache"
 	}
 }
-
 
 resource "aws_instance" "slave-node-1a" {
 	count = "${var.ec2-1a-instance_count}"
