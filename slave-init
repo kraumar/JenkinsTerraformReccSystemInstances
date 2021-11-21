@@ -3,12 +3,12 @@
   resize_rootfs_tmp: /dev
   users:
     - default
-    - name: ubuntu
+    - name: hadoop
       groups: sudo
       shell: /bin/bash
       sudo: ['ALL=(ALL) NOPASSWD:ALL']
       ssh_authorized_keys:
-	- ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCnwsJ1LHoRNllrfBPq49tQOnJjhdi2Mulic1QZwG5Zz21M9rUHaa0N/vRF5ZpoXCSf77dTLj+lUihuP02Yt9ulVW9Q7Eqy99jWS2lFbLUOKrkHg7860EL81quu06JWqKhrAEInq9YtIOrjwK2KSlhBgvkQ53AauGmbCEWQJ1tMwiG6lpebfPtQOw3YAAaliyfdz7ZyzEKESD5AtfV98zAOHhoDlHaG/nhY2ZUDM/G1lpQHRbottc4tb2Smxowhmf8QeFQEG3xDlsuaBCJECwM7UPQ3OAA33eFU33T8UKCFo7Mb69ajlZ3whD/uWsN/hhGJ7kynVOZ6J2KNQQv8rqK1SPCdBSvMXNZvRjnEJk8hW+1We2B3IrgQ4hQYup9WXaqctw3b+CEHNNpO87Un6KYh9w5acg+S9xuBDijp6T4Q1OV4TQgUiUPuxnGTcCTKunNhG5juVGRHaH0iuAa1dyJv3bxy2ndjO9J/8d1I3GHFJlr7RSbiS9lhxRYneWiLk98= ubuntu@ip-172-31-31-126
+        - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCyrN189yiMneRnyetxiz43Yx+81F/DZYdYjIMG8KcOjlZEz0UNn7zs6SZzcP7HkB+AmQmyo2lGsCh80MfALS4MgOXikirv1hp3/+3F0sGCCompZOX5QFIiedyKDYdLxwCTcblgsaDl+Fkf850JKWui8UrMokBk7do4HqZbl5jjA6PSpvqvPvMoAXTVfXVflk3sr261PsIz8IrzaJXqs/OP2p5fHxd6WuFDDVGVEFAb+DN33q5PTIuVc8h0PHJ5r66sk6Noa8xrRtA8L0kCnFHo1h3/CasOgMTNcu8tTxz/IvElBLDZZjGw8qF+V+4plgbohpubGX8Kw5JZCNJHqzHOsuJczQCQZIz06DQiUNKUWWRF08UxQHRoB4rD0bpQu4vITBS05Y1SYw5GrJRY/xKJI4xuXwpybOysEdW34ouPr0g1em6ULaqy2sqLufVh+Ico3PEjZnQXbFLw3BQKM2bjhcyI3vPRZlJYojOxe1qsGMWTAin0DFVqvzDlfCa0C1U= hadoop@ip-172-31-31-126
   runcmd:
     - apt update
     - apt install -y openjdk-8-jre-headless
@@ -21,6 +21,6 @@
     - mv /opt/config_files/core-site.xml /opt/hadoop/hadoop-2.10.1/etc/hadoop/core-site.xml
     - mv /opt/config_files/hdfs-site.xml /opt/hadoop/hadoop-2.10.1/etc/hadoop/hdfs-site.xml
     - mkdir -p /usr/local/hadoop/hdfs/data
-    - chown -R 'marek-ubu:' /opt
-    - chown -R 'marek-ubu:marek-ubu' /usr/local/hadoop/hdfs/data
+    - chown -R 'hadoop:' /opt
+    - chown -R 'hadoop:hadoop' /usr/local/hadoop/hdfs/data
   final_message: 'Hadoop Slave is up'

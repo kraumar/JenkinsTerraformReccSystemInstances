@@ -16,7 +16,7 @@ file = open("./config.tmp", "a")
 
 namenode = """Host nnode
   HostName 18.193.117.36
-  User ubuntu
+  User hadoop
   IdentityFile ~/.ssh/id_rsa"""
 
 file.write(namenode + '\n')
@@ -25,9 +25,9 @@ file.write(namenode + '\n')
 for i in range(n_lines):
 	datanode = """Host dnode""" + str(i + 1) +"""
   HostName """ + ips[i] + """
-  User ubuntu
+  User hadoop
   IdentityFile ~/.ssh/id_rsa"""
 	file.write('\n' + datanode + '\n')
 
-os.replace("./config.tmp","/home/ubuntu/.ssh/config")
+os.replace("./config.tmp","/home/hadoop/.ssh/config")
 os.replace("./slave-public-ips","/opt/hadoop/hadoop-2.10.1/etc/hadoop/slaves")
