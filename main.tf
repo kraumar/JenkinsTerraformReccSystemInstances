@@ -8,7 +8,7 @@ resource "aws_key_pair" "key-to-pc"{
 	public_key = tls_private_key.ssh.public_key_openssh
 	
 	provisioner "local-exec" { 
-		command = "echo '${tls_private_key.ssh.private_key_pem}' > key-to-pc.pem"
+		command = "echo '${tls_private_key.ssh.private_key_pem}' > /opt/key-to-pc.pem"
 	}
 }
 
