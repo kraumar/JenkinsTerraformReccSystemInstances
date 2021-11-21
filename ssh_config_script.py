@@ -15,8 +15,8 @@ n_lines = len(ips)
 file = open("./config.tmp", "a")
 
 namenode = """Host nnode
-  HostName 89.64.44.23
-  User marek-ubu
+  HostName 18.193.117.36
+  User ubuntu
   IdentityFile ~/.ssh/id_rsa"""
 
 file.write(namenode + '\n')
@@ -25,7 +25,7 @@ file.write(namenode + '\n')
 for i in range(n_lines):
 	datanode = """Host dnode""" + str(i + 1) +"""
   HostName """ + ips[i] + """
-  User marek-ubu
+  User ubuntu
   IdentityFile ~/.ssh/id_rsa"""
 	file.write('\n' + datanode + '\n')
 
