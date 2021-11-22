@@ -3,19 +3,19 @@ import os
 if os.path.exists("./config.tmp"):
 	os.remove("./config.tmp")
 
-file = open("./slave-public-ips")
+file = open("./slave-public-dns")
 
-ips = []
+dns = []
 
 for line in file:
 	ips.append(line.strip())
 
-n_lines = len(ips)
+n_lines = len(dns)
 
 file = open("./config.tmp", "a")
 
 namenode = """Host nnode
-  HostName 18.193.113.100
+  HostName ec2-18-193-113-100.eu-central-1.compute.amazonaws.com
   User hadoop
   IdentityFile ~/.ssh/id_rsa"""
 
@@ -24,10 +24,10 @@ file.write(namenode + '\n')
 
 for i in range(n_lines):
 	datanode = """Host dnode""" + str(i + 1) +"""
-  HostName """ + ips[i] + """
+  HostName """ + dns[i] + """
   User hadoop
   IdentityFile ~/.ssh/id_rsa"""
 	file.write('\n' + datanode + '\n')
 
 os.replace("./config.tmp","/home/hadoop/.ssh/config")
-os.replace("./slave-public-ips","/opt/hadoop/hadoop-2.10.1/etc/hadoop/slaves")
+os.replace("./slave-public-dns","/opt/hadoop/hadoop-2.10.1/etc/hadoop/slaves")

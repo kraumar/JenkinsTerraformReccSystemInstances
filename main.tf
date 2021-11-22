@@ -19,7 +19,7 @@ resource "aws_security_group_rule" "allow_ssh_access_ingress" {
 	from_port = 22
 	to_port = 22
 	protocol = "TCP"
-	cidr_blocks = [ "18.193.113.100/32"]
+	cidr_blocks = [ "172.31.25.235/32"]
 }
 
 resource "aws_security_group_rule" "allow_ssh_access_egress" {
@@ -29,7 +29,7 @@ resource "aws_security_group_rule" "allow_ssh_access_egress" {
         from_port = 22
         to_port = 22
         protocol = "TCP"
-        cidr_blocks = [ "18.193.113.100/32"]
+        cidr_blocks = [ "172.31.25.235/32"]
 } 
 
 resource "aws_security_group" "ssh_pc" {
@@ -78,7 +78,7 @@ resource "aws_security_group_rule" "hadoop_9000_ingress"{
 	from_port = 9000
 	to_port = 9000
 	protocol = "TCP"
-	cidr_blocks = ["18.193.113.100/32"]
+	cidr_blocks = ["172.31.25.235/32"]
 }
 
 resource "aws_security_group_rule" "hadoop_9000_egress"{
@@ -88,7 +88,7 @@ resource "aws_security_group_rule" "hadoop_9000_egress"{
 	from_port = 9000
 	to_port = 9000
 	protocol = "TCP"
-	cidr_blocks = ["18.193.113.100/32"]
+	cidr_blocks = ["172.31.25.235/32"]
 }
 
 resource "aws_security_group_rule" "hadoop_54311_ingress"{
@@ -98,7 +98,7 @@ resource "aws_security_group_rule" "hadoop_54311_ingress"{
 	from_port = 54311
 	to_port = 54311
 	protocol = "TCP"
-	cidr_blocks = ["18.193.113.100/32"]
+	cidr_blocks = ["172.31.25.235/32"]
 }
 
 resource "aws_security_group_rule" "hadoop_54311_egress"{
@@ -108,7 +108,7 @@ resource "aws_security_group_rule" "hadoop_54311_egress"{
 	from_port = 54311
 	to_port = 54311
 	protocol = "TCP"
-	cidr_blocks = ["18.193.113.100/32"]
+	cidr_blocks = ["172.31.25.235/32"]
 }
 
 resource "aws_security_group" "apache" {
@@ -217,7 +217,7 @@ resource "aws_volume_attachment" "ebs-eu-central-1a-attachment" {
 	volume_id = element(aws_ebs_volume.ebs-eu-central-1a.*.id, count.index)
 	instance_id = element(aws_instance.slave-node-1a.*.id, count.index)
 	provisioner "local-exec" {
-		command = "echo '${aws_instance.slave-node-1a[count.index].public_ip}'  >> slave-public-ips"
+		command = "echo '${aws_instance.slave-node-1a[count.index].public_dns}'  >> slave-public-dns"
 	}
 }
 
@@ -240,7 +240,7 @@ resource "aws_volume_attachment" "ebs-eu-central-1b-attachment" {
 	volume_id = element(aws_ebs_volume.ebs-eu-central-1b.*.id, count.index)
 	instance_id = element(aws_instance.slave-node-1b.*.id, count.index)
 	provisioner "local-exec" {
-		command = "echo '${aws_instance.slave-node-1b[count.index].public_ip}'  >> slave-public-ips"
+		command = "echo '${aws_instance.slave-node-1b[count.index].public_dns}'  >> slave-public-dns"
 	}
 }
 
@@ -263,6 +263,6 @@ resource "aws_volume_attachment" "ebs-eu-central-1c-attachment" {
 	volume_id = element(aws_ebs_volume.ebs-eu-central-1c.*.id, count.index)
 	instance_id = element(aws_instance.slave-node-1c.*.id, count.index)
 	provisioner "local-exec" {
-		command = "echo '${aws_instance.slave-node-1c[count.index].public_ip}'  >> slave-public-ips"
+		command = "echo '${aws_instance.slave-node-1c[count.index].public_dns}'  >> slave-public-dns"
 	}
 }
