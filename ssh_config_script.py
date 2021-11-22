@@ -8,7 +8,7 @@ file = open("./slave-public-dns")
 dns = []
 
 for line in file:
-	ips.append(line.strip())
+	dns.append(line.strip())
 
 n_lines = len(dns)
 
