@@ -30,4 +30,4 @@ for i in range(n_lines):
 	file.write('\n' + datanode + '\n')
 
 os.replace("./config.tmp","/home/hadoop/.ssh/config")
-os.replace("./slave-public-dns","/opt/hadoop/hadoop-2.10.1/etc/hadoop/slaves")
+os.replace("./slave-public-dns","/opt/hadoop/hadoop-2.7.0/etc/hadoop/slaves")
