@@ -111,6 +111,26 @@ resource "aws_security_group_rule" "hadoop_54311_egress"{
 	cidr_blocks = ["172.31.25.235/32"]
 }
 
+resource "aws_security_group_rule" "spark_50010_ingress"{
+	security_group_id = aws_security_group.apache.id
+	type = "ingress"
+	description = "ingress for spark on port 50010"
+	from_port = 50010
+	to_port = 50010
+	protocol = "TCP"
+	cidr_blocks = ["172.31.25.235/32"]
+}
+
+resource "aws_security_group_rule" "spark_50010_egress"{
+	security_group_id = aws_security_group.apache.id
+	type = "egress"
+	description = "egress for hadoop master on port 50010"
+	from_port = 50010
+	to_port = 50010
+	protocol = "TCP"
+	cidr_blocks = ["172.31.25.235/32"]
+}
+
 resource "aws_security_group" "apache" {
 	name = "apache"
 	description = "security group for apache frameworks"
