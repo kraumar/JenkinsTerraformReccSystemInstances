@@ -20,6 +20,7 @@
     - git clone https://github.com/kraumar/slave-node-spark.git /opt/config_files
     - mv /opt/config_files/core-site.xml /opt/hadoop/hadoop-2.7.0/etc/hadoop/core-site.xml
     - mv /opt/config_files/hdfs-site.xml /opt/hadoop/hadoop-2.7.0/etc/hadoop/hdfs-site.xml
+    - mv /opt/config_files/yarn-site.xml /opt/hadoop/hadoop-2.7.0/etc/hadoop/yarn-site.xml
     - mkdir -p /usr/local/hadoop/hdfs/data
     - chown -R 'hadoop:' /opt
     - chown -R 'hadoop:hadoop' /usr/local/hadoop/hdfs/data
