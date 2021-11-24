@@ -34,7 +34,7 @@ variable "subnets"{
 variable "instance_type"{
 	type = map(string)
 	default = {
-		"slaves-instance_type" = "t2.micro"
+		"slaves-instance_type" = "t3.medium"
 		"master-instance_type" = "t2.micro"
 	}
 }
