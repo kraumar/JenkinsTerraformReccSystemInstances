@@ -132,7 +132,6 @@ resource "aws_instance" "slave-node-1a" {
 	instance_type = var.instance_type["slaves-instance_type"]
 	subnet_id = var.subnets["eu-central-1a"]
 	availability_zone = "eu-central-1a"
-	key_name = aws_key_pair.key-to-pc.key_name      
 	associate_public_ip_address = true
 	vpc_security_group_ids = [
 				aws_security_group.ssh_pc.id, 
@@ -158,7 +157,6 @@ resource "aws_instance" "slave-node-1b" {
 	instance_type = var.instance_type["slaves-instance_type"]
 	subnet_id = var.subnets["eu-central-1b"]
 	availability_zone = "eu-central-1b"
-	key_name = aws_key_pair.key-to-pc.key_name
 	associate_public_ip_address = true
 	vpc_security_group_ids = [
 				aws_security_group.ssh_pc.id, 
@@ -184,7 +182,6 @@ resource "aws_instance" "slave-node-1c" {
 	instance_type = var.instance_type["slaves-instance_type"]
 	subnet_id = var.subnets["eu-central-1c"]
 	availability_zone = "eu-central-1c"
-	key_name = aws_key_pair.key-to-pc.key_name
 	associate_public_ip_address = true
 	vpc_security_group_ids = [
 				aws_security_group.ssh_pc.id, 
