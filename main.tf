@@ -1,17 +1,3 @@
-resource "tls_private_key" "ssh" {
-	algorithm = "RSA"
-	rsa_bits = "4096"
-}
-
-resource "aws_key_pair" "key-to-pc"{
-	key_name = "key-to-pc"
-	public_key = tls_private_key.ssh.public_key_openssh
-	
-	provisioner "local-exec" { 
-		command = "echo '${tls_private_key.ssh.private_key_pem}' > /opt/key-to-pc.pem"
-	}
-}
-
 resource "aws_security_group_rule" "allow_ssh_access_ingress" {
 	security_group_id = aws_security_group.ssh_pc.id
 	type = "ingress"
