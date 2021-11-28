@@ -15,7 +15,7 @@ n_lines = len(dns)
 file = open("./config.tmp", "a")
 
 namenode = """Host nnode
-  HostName ec2-3-68-149-109.eu-central-1.compute.amazonaws.com
+  HostName ec2-18-192-215-239.eu-central-1.compute.amazonaws.com
   User hadoop
   IdentityFile ~/.ssh/id_rsa"""
 
