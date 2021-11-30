@@ -61,8 +61,8 @@ resource "aws_security_group_rule" "master_ingress"{
 	security_group_id = aws_security_group.apache.id
 	type = "ingress"
 	description = "ingress for master"
-	from_port =  -1
-	to_port = -1
+	from_port =  0
+	to_port = 65535
 	protocol = "TCP"
 	cidr_blocks = ["172.31.25.235/32"]
 }
@@ -71,8 +71,8 @@ resource "aws_security_group_rule" "master_egress"{
 	security_group_id = aws_security_group.apache.id
 	type = "egress"
 	description = "egress to master"
-	from_port = -1
-	to_port = -1
+	from_port = 0
+	to_port = 65535
 	protocol = "TCP"
 	cidr_blocks = ["172.31.25.235/32"]
 }
@@ -81,8 +81,8 @@ resource "aws_security_group_rule" "slaves_ingress"{
 	security_group_id = aws_security_group.apache.id
 	type = "ingress"
 	description = "ingress for slave"
-	from_port = -1
-	to_port = -1
+	from_port = 0
+	to_port = 65535
 	protocol = "TCP"
 	cidr_blocks = ["172.31.0.0/16"]
 }
@@ -91,8 +91,8 @@ resource "aws_security_group_rule" "slaves_egress"{
 	security_group_id = aws_security_group.apache.id
 	type = "egress"
 	description = "egress for slave"
-	from_port = 54311
-	to_port = 54311
+	from_port = 0
+	to_port = 65535
 	protocol = "TCP"
 	cidr_blocks = ["172.31.0.0/16"]
 }
