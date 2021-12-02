@@ -11,6 +11,8 @@
         - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDCXSIn+0G4TF2c9/v6Gd9hf/QnpmZQvfWtxBGiM0tHwOPAjdhuRp6z3kiI0X0PhOPKGams1lHMfTgiS5ODgd3nuXJoswHctPiBR3mMyUHq56fdag0nlIzP7TFjxenqUrI/RowWjEd1IqJvQGIXSj51LyhzULo780915UgXwUBOpo631yUyT/koIAzMCkDRat7xPTcLN0FAI3lTKxAmc91nbLwSzhb4xb7uYWSZPXMtV8TiF7kyxaCqEcGlmhwh/7BUgv8w5ZeBpQHP37uPxMMZ4nVIYC0UHix2N4Ihuwyxcd5kpWhua1AeTJ4chWLjHVEn0fsNpwJfjwioMYmkmCF8SIUAMjo2C1jr0o7BJ+NOTNDs0lggOnpPsopwEDGKn02wo+XjwJqlnns3lhaxoFzR5ZeoMiliqSJS9BEMehcCNQf5CL/m042uptJiO23PPyFD//yy2JQWUMcCYLHJuDUqLMR4Kmovu0p/p0c8x4OEOhQMn66uIxwMs0X5FXy1fgM= hadoop@ip-172-31-25-235
   runcmd:
     - apt update
+    - apt install -y openjdk-8-jre-headless
+    - apt install -y openjdk-8-jdk-headless
     - wget https://launchpad.net/~openjdk-security/+archive/ubuntu/ppa/+build/19763089/+files/openjdk-8-jre_8u265-b01-0ubuntu2~18.04_amd64.deb
     - wget https://launchpad.net/~openjdk-security/+archive/ubuntu/ppa/+build/19763089/+files/openjdk-8-jdk_8u265-b01-0ubuntu2~18.04_amd64.deb
     - wget https://launchpad.net/~openjdk-security/+archive/ubuntu/ppa/+build/19763089/+files/openjdk-8-jdk-headless_8u265-b01-0ubuntu2~18.04_amd64.deb
