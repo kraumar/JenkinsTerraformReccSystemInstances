@@ -14,12 +14,12 @@ variable ec2-1a-instance_count{
 
 variable ec2-1b-instance_count{
         type = number
-        default = 1
+        default = 2
 }
 
 variable ec2-1c-instance_count{
         type = number
-        default = 1
+        default = 2
 }
 
 variable "subnets"{
@@ -34,7 +34,7 @@ variable "subnets"{
 variable "instance_type"{
 	type = map(string)
 	default = {
-		"slaves-instance_type" = "t3.medium"
+		"slaves-instance_type" = "t3.xlarge"
 		"master-instance_type" = "t2.micro"
 	}
 }
