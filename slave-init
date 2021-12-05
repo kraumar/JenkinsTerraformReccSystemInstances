@@ -8,7 +8,7 @@
       shell: /bin/bash
       sudo: ['ALL=(ALL) NOPASSWD:ALL']
       ssh_authorized_keys:
-        - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDCXSIn+0G4TF2c9/v6Gd9hf/QnpmZQvfWtxBGiM0tHwOPAjdhuRp6z3kiI0X0PhOPKGams1lHMfTgiS5ODgd3nuXJoswHctPiBR3mMyUHq56fdag0nlIzP7TFjxenqUrI/RowWjEd1IqJvQGIXSj51LyhzULo780915UgXwUBOpo631yUyT/koIAzMCkDRat7xPTcLN0FAI3lTKxAmc91nbLwSzhb4xb7uYWSZPXMtV8TiF7kyxaCqEcGlmhwh/7BUgv8w5ZeBpQHP37uPxMMZ4nVIYC0UHix2N4Ihuwyxcd5kpWhua1AeTJ4chWLjHVEn0fsNpwJfjwioMYmkmCF8SIUAMjo2C1jr0o7BJ+NOTNDs0lggOnpPsopwEDGKn02wo+XjwJqlnns3lhaxoFzR5ZeoMiliqSJS9BEMehcCNQf5CL/m042uptJiO23PPyFD//yy2JQWUMcCYLHJuDUqLMR4Kmovu0p/p0c8x4OEOhQMn66uIxwMs0X5FXy1fgM= hadoop@ip-172-31-25-235
+        - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDEXKVWuz/o5c3dmlwRY42wSnNLdAboRwSg9m+nzu+Z6af1a2Zr5aQ1AGPt5yxeCzGQZAw70LzLVQHPXCjuW4qBqN5n0GBe+IHBZep7gfwAOesk2BThSwaIfuVwHsQZ6g7b+xJA0VifC4PGGa5kUs9GVvAFaE6z/OScJpqri11ZofsT3JDPy8z0y5gg3s/RXIACbts6zaA+xfeyE2w5oUcMbUGyoaB9jHTt7mOifYlsHI3BXnTRUWhlPbmt9VtImgaZsNDPCJ9QiTLVzHGJe9o8UopkuO4e7TQvFcCDKO/SGe4FWC1EA8MMEJ8gJle7uf/R4kUkw/4c06SxSyEc4DQTwmMBsfRwNfwB4X1iAQIzPuswmawFWH++6QfbESwNKe9OCFkrrBMBl2cHotCy5mBAJVzXK438z4zVp90hazOJibP1beG5Grf+ND8KCm/KOmvZimo21cRVGV7TAN7fmg6vP0LUJL9kLFvXGOXe6XoZpMSYeLUk79mQWKHz2jBPdXk= hadoop@ip-172-31-11-55
   runcmd:
     - apt update
     - apt install -y openjdk-8-jre-headless
