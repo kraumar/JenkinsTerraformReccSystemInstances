@@ -5,7 +5,7 @@ resource "aws_security_group_rule" "allow_ssh_access_ingress" {
 	from_port = 22
 	to_port = 22
 	protocol = "TCP"
-	cidr_blocks = [ "172.31.25.235/32"]
+	cidr_blocks = [ "172.31.11.55/32"]
 }
 
 resource "aws_security_group_rule" "allow_ssh_access_egress" {
@@ -15,7 +15,7 @@ resource "aws_security_group_rule" "allow_ssh_access_egress" {
         from_port = 22
         to_port = 22
         protocol = "TCP"
-        cidr_blocks = [ "172.31.25.235/32"]
+        cidr_blocks = [ "172.31.11.55/32"]
 } 
 
 resource "aws_security_group" "ssh_pc" {
@@ -64,7 +64,7 @@ resource "aws_security_group_rule" "master_ingress"{
 	from_port =  0
 	to_port = 65535
 	protocol = "TCP"
-	cidr_blocks = ["172.31.25.235/32"]
+	cidr_blocks = ["172.31.11.55/32"]
 }
 
 resource "aws_security_group_rule" "master_egress"{
@@ -74,7 +74,7 @@ resource "aws_security_group_rule" "master_egress"{
 	from_port = 0
 	to_port = 65535
 	protocol = "TCP"
-	cidr_blocks = ["172.31.25.235/32"]
+	cidr_blocks = ["172.31.11.55/32"]
 }
 
 resource "aws_security_group_rule" "slaves_ingress"{
